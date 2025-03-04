@@ -166,9 +166,11 @@ class Student(Person):
     def introduce(self):
         return f"I am a student"
 
+
 class WorkingStudent(Worker, Person):
     def introduce(self):
         return f"I am a working student"
+
 
 print(WorkingStudent.introduce(Person))
 
@@ -180,12 +182,14 @@ class Animal:
     def make_sound(self):
         return "some sound"
 
+
 class Pet:
     def __init__(self):
         pass
 
     def is_domestic(self):
         return True
+
 
 class Dog(Animal, Pet):
     def __init__(self):
@@ -197,5 +201,210 @@ class Dog(Animal, Pet):
     def is_domestic(self):
         return True
 
+
 dog1 = Dog()
 print(dog1.is_domestic())
+
+print("-------------------------------")
+
+
+class FlyingVehicle:
+    def move(self) -> str:
+        return "I fly"
+
+
+class WaterVehicle:
+    def move(self) -> str:
+        return "I sail"
+
+
+class AmphibiousVehicle(FlyingVehicle, WaterVehicle):
+    def move(self, mode: str) -> str:
+        if mode == "fly":
+            return super(FlyingVehicle, self).move()
+        elif mode == "sail":
+            return super(WaterVehicle, self).move()
+
+
+class Robot:
+    def operate(self):
+        return "Performing task"
+
+
+class AI:
+    def think(self):
+        return "Processing data"
+
+
+class Android(Robot, AI):
+    def learn(self):
+        return "Learning new tasks"
+
+
+class TemperatureConverter:
+    @staticmethod
+    def celsius_to_fahrenheit(celsius):
+        return (celsius * 9 / 5) + 32
+
+    @staticmethod
+    def fahrenheit_to_celsius(fahrenheit):
+        return (fahrenheit - 32) * 5 / 9
+
+
+class IDGenerator:
+    _current_id = 0
+
+    @classmethod
+    def generate_id(cls):
+        cls._current_id += 1
+        return cls._current_id
+
+
+class Store:
+    total_customers = 0
+
+    @classmethod
+    def add_customer(cls):
+        cls.total_customers += 1
+
+    @classmethod
+    def get_total_customers(cls):
+        return cls.total_customers
+
+
+class MathOperations:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+    @staticmethod
+    def multiply(a, b):
+        return a * b
+
+    @classmethod
+    def identity_matrix(cls, size):
+        return [[1 if i == j else 0 for j in range(size)] for i in range(size)]
+
+
+class GameCharacter:
+    default_health = 100
+
+    def __init__(self):
+        self.health = self.default_health
+
+    def restore_health(self):
+        self.health = self.default_health
+
+    @classmethod
+    def set_default_health(cls, new_value):
+        cls.default_health = new_value
+
+
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def authorize_payment(self, amount):
+        pass
+
+    @abstractmethod
+    def capture_payment(self, amount):
+        pass
+
+
+class CreditCardPayment(PaymentProcessor):
+    def authorize_payment(self, amount):
+        print(f"Authorizing credit card payment of {amount}.")
+
+    def capture_payment(self, amount):
+        print(f"Capturing credit card payment of {amount}.")
+
+
+class PayPalPayment(PaymentProcessor):
+    def authorize_payment(self, amount):
+        print(f"Authorizing PayPal payment of {amount}.")
+
+    def capture_payment(self, amount):
+        print(f"Capturing PayPal payment of {amount}.")
+
+
+class Vehicle(ABC):
+    @abstractmethod
+    def max_speed(self):
+        pass
+
+
+class Car(Vehicle):
+    def max_speed(self):
+        return 200
+
+
+class Bicycle(Vehicle):
+    def max_speed(self):
+        return 25
+
+
+class DatabaseConnection(ABC):
+    @abstractmethod
+    def connect(self):
+        pass
+
+    @abstractmethod
+    def execute_query(self, query):
+        pass
+
+
+class MySQLConnection(DatabaseConnection):
+    def connect(self):
+        print("Connecting to MySQL database.")
+
+    def execute_query(self, query):
+        print(f"Executing query on MySQL: {query}")
+
+
+class PostgreSQLConnection(DatabaseConnection):
+    def connect(self):
+        print("Connecting to PostgreSQL database.")
+
+    def execute_query(self, query):
+        print(f"Executing query on PostgreSQL: {query}")
+
+
+class Instrument(ABC):
+    @abstractmethod
+    def play(self):
+        pass
+
+
+class Piano(Instrument):
+    def play(self):
+        print("Playing the piano.")
+
+
+class Guitar(Instrument):
+    def play(self):
+        print("Playing the guitar.")
